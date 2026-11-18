@@ -4,6 +4,7 @@ import { findNavItem, ROLE_LABELS } from '@/config/navigation';
 import { useSession } from '@/context/SessionContext';
 import { Badge } from '@/components/ui/Badge';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { RouteProgress } from './RouteProgress';
 
 export function Topbar({ onMenu }: { onMenu: () => void }) {
   const { pathname } = useLocation();
@@ -39,6 +40,7 @@ export function Topbar({ onMenu }: { onMenu: () => void }) {
         </span>
         <ThemeToggle />
       </div>
+      <RouteProgress />
     </header>
   );
 }

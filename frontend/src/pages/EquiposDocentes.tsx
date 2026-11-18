@@ -78,8 +78,7 @@ export default function EquiposDocentes() {
       {error && <div className="error-message">{error}</div>}
       {success && (
         <div
-          className="error-message"
-          style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', color: '#166534' }}
+          className="success-message"
         >
           {success}
         </div>

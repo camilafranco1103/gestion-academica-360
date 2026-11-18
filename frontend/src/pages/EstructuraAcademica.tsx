@@ -148,7 +148,7 @@ export default function EstructuraAcademica() {
 
       {error && <div className="error-message">{error}</div>}
       {success && (
-        <div className="error-message" style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', color: '#166534' }}>
+        <div className="success-message">
           {success}
         </div>
       )}

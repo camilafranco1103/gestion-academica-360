@@ -75,7 +75,7 @@ export function Carousel({ children, label, slideClassName = 'basis-full', autop
                 onClick={() => api?.scrollTo(i)}
                 className={cn(
                   'h-1.5 cursor-pointer rounded-full transition-all duration-300',
-                  i === selected ? 'bg-brand w-6' : 'w-1.5 bg-border hover:bg-muted-foreground/40',
+                  i === selected ? 'w-6 bg-accent' : 'w-1.5 bg-border hover:bg-muted-foreground/40',
                 )}
               />
             ))}

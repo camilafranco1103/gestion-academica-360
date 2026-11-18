@@ -49,10 +49,11 @@ export function StatCard({ label, value, icon, hint, tone = 'brand', format }: S
       className="group relative overflow-hidden rounded-xl border bg-card p-5 shadow-[var(--shadow-soft)] transition-shadow hover:shadow-[var(--shadow-lift)]"
     >
       <motion.div aria-hidden className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100" style={{ background: spotlight }} />
+      <span aria-hidden className="bg-brand absolute inset-x-0 top-0 h-0.5 scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
       <div className="relative flex items-start justify-between gap-3">
         <div>
           <p className="text-sm font-medium text-muted-foreground">{label}</p>
-          <p className="mt-2 text-3xl font-bold tracking-tight">
+          <p className="font-display mt-2 text-4xl leading-none font-semibold tracking-tight [font-variant-numeric:lining-nums_tabular-nums]">
             <AnimatedNumber value={value} format={format} />
           </p>
           {hint && <p className="mt-1 text-xs text-muted-foreground">{hint}</p>}

@@ -19,15 +19,19 @@ export function Sidebar({ onNavigate, onLogout }: SidebarProps) {
     .filter((g) => g.items.length > 0);
 
   return (
-    <aside className="flex h-full w-64 flex-col border-r bg-sidebar">
-      <div className="flex h-16 items-center px-5">
-        <Logo withText />
+    <aside className="relative flex h-full w-64 flex-col overflow-hidden border-r border-sidebar-border bg-sidebar text-sidebar-foreground">
+      {/* soft coral/teal glow + grain give the dark surface depth */}
+      <div aria-hidden className="pointer-events-none absolute -top-24 -left-20 size-64 rounded-full bg-accent/15 blur-3xl" />
+      <div aria-hidden className="bg-grain pointer-events-none absolute inset-0 opacity-[0.07] mix-blend-overlay" />
+
+      <div className="relative flex h-16 items-center px-5">
+        <Logo withText tone="light" />
       </div>
 
-      <nav aria-label="Principal" className="scrollbar-thin flex-1 overflow-y-auto px-3 pb-4">
+      <nav aria-label="Principal" className="scrollbar-thin relative flex-1 overflow-y-auto px-3 pb-4">
         {groups.map((group) => (
           <div key={group.label} className="mt-4 first:mt-1">
-            <p className="mb-1.5 px-3 text-[0.68rem] font-semibold tracking-wider text-muted-foreground/80 uppercase">
+            <p className="mb-1.5 px-3 text-[0.66rem] font-semibold tracking-[0.16em] text-sidebar-muted/70 uppercase">
               {group.label}
             </p>
             <ul className="space-y-0.5">
@@ -39,8 +43,8 @@ export function Sidebar({ onNavigate, onLogout }: SidebarProps) {
                     onClick={onNavigate}
                     className={({ isActive }) =>
                       cn(
-                        'relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                        isActive ? 'text-primary' : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                        'group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                        isActive ? 'text-white' : 'text-sidebar-muted hover:bg-white/5 hover:text-sidebar-foreground',
                       )
                     }
                   >
@@ -49,13 +53,18 @@ export function Sidebar({ onNavigate, onLogout }: SidebarProps) {
                         {isActive && (
                           <motion.span
                             layoutId="sidebar-active"
-                            className="absolute inset-0 rounded-lg bg-primary-soft"
+                            className="absolute inset-0 rounded-lg bg-sidebar-active"
                             transition={{ type: 'spring', stiffness: 420, damping: 34 }}
                           >
-                            <span className="bg-brand absolute top-1.5 bottom-1.5 left-0 w-1 rounded-full" />
+                            <span className="absolute top-1.5 bottom-1.5 left-0 w-1 rounded-full bg-accent shadow-[0_0_12px_var(--color-accent)]" />
                           </motion.span>
                         )}
-                        <item.icon className="relative size-4.5 shrink-0" />
+                        <item.icon
+                          className={cn(
+                            'relative size-4.5 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5',
+                            isActive && 'text-accent',
+                          )}
+                        />
                         <span className="relative">{item.label}</span>
                       </>
                     )}
@@ -68,19 +77,19 @@ export function Sidebar({ onNavigate, onLogout }: SidebarProps) {
       </nav>
 
       {user && (
-        <div className="border-t p-3">
+        <div className="relative border-t border-sidebar-border p-3">
           <div className="flex items-center gap-3 rounded-lg p-2">
             <UserAvatar name={user.nombre} />
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-semibold">{user.nombre}</p>
-              <p className="truncate text-xs text-muted-foreground">{user.email}</p>
+              <p className="truncate text-xs text-sidebar-muted">{user.email}</p>
             </div>
             <button
               type="button"
               onClick={onLogout}
               aria-label="Cerrar sesión"
               title="Cerrar sesión"
-              className="grid size-8 cursor-pointer place-items-center rounded-lg text-muted-foreground transition-colors hover:bg-danger-soft hover:text-danger [&_svg]:size-4"
+              className="grid size-8 cursor-pointer place-items-center rounded-lg text-sidebar-muted transition-colors hover:bg-white/10 hover:text-white [&_svg]:size-4"
             >
               <LogOut />
             </button>

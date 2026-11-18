@@ -128,18 +128,18 @@ Infra de tests: `conftest.py` fija `DATABASE_URL` a SQLite antes de importar la 
 
 ### Fase U — Frontend (dominio BAJO salvo auth/guards)
 
-Dirección visual: **"Claro profesional + violeta"**. SaaS corporativo, limpio, con identidad tecnológica.
+Dirección visual: **"Petróleo + coral"**. Académico y tecnológico a la vez: serif editorial en los títulos, sidebar petróleo oscuro, acento coral y líneas de "traza" animadas como motivo de marca.
 
-- **Paleta:** base clara (fondos `slate-50`/blanco), acento índigo→violeta (gradiente de marca `#4f46e5 → #7c3aed`), estados semánticos (éxito esmeralda, alerta ámbar, error rosa). Modo oscuro alternativo con los mismos tokens.
+- **Paleta:** petróleo `#0E6B72` (primario), teal `#14919B`, coral `#F2704B` (acento), fondo `#F6F8F8`, sidebar `#0B2E33`, texto `#10252A`. Todo definido como tokens OKLCH en `src/index.css` (`@theme` + `.dark`); la serie de gráficos y la paleta de estado están validadas con el script de `dataviz` en ambos temas. El coral solo se usa como texto vía `--color-accent-ink` (contraste). Estados: esmeralda / ámbar / carmesí.
 - **Tokens:** definidos una sola vez en `src/index.css` con `@theme` de Tailwind v4. Ningún color hex suelto en componentes.
-- **Tipografía:** Inter (texto) + JetBrains Mono (números/códigos). Números con `tabular-nums`.
-- **Superficies:** tarjetas blancas con borde sutil y sombra suave; hover con elevación y tilt leve.
+- **Tipografía:** Inter (UI y texto), **Fraunces** (display: títulos `h1`, saludo del hero, números KPI) y JetBrains Mono (códigos). Números con `tabular-nums`; etiquetas de sección en versalitas con `tracking` amplio (`SectionTitle`, `eyebrow`).
+- **Superficies:** tarjetas blancas con borde sutil y sombra suave; hero con gradiente petróleo + aurora coral + grano; sidebar oscuro con brillo y grano; hover con elevación y tilt leve.
 - **Efectos (con criterio):** contadores animados en métricas, aparición escalonada de listas, indicador animado en el sidebar, carrusel de avisos/accesos en el Dashboard, fondo de login con gradiente animado. Todo efecto se apaga con `prefers-reduced-motion`.
 - **Componentes base** en `src/components/ui/` (Button, Card, Badge, Input, Table, Modal, StatCard, Carousel, EmptyState, Skeleton). Las páginas los consumen; no reinventan estilos.
 - **Límites:** componentes < 200 LOC; páginas grandes se parten en subcomponentes en `src/features/<modulo>/`.
 - **Accesibilidad:** contraste WCAG AA, foco visible, navegación por teclado en carruseles y modales.
 - **Orden de trabajo:** tokens + UI base → AppLayout (sidebar/topbar) → Login → Dashboard → resto de páginas.
-- **Gráficos:** antes de escribir uno, cargar la skill `dataviz` y validar la paleta con su script. Paleta de estado del gráfico de avance validada (bueno → advertencia → crítico, nunca verde junto a rojo); serie única en `--color-chart-1`. Sin donuts: barras, medidores o tiles.
+- **Gráficos:** antes de escribir uno, cargar la skill `dataviz` y validar la paleta con su script. Paleta de estado del gráfico de avance validada por tema (esmeralda → ámbar → carmesí; el ámbar siempre entre los otros dos); serie única en `--color-chart-1`. Sin donuts: barras, medidores o tiles.
 
 **Estado (2026-11-18):**
 - ✅ Tokens light/dark en `src/index.css` + capa de compatibilidad que reestiliza las clases heredadas (`.card`, `.btn`, tablas, modales, tabs) — las 15 páginas ya usan el diseño nuevo.

@@ -615,8 +615,8 @@ Plan detallado y estado vivo en [AGENTS.md → Plan de puesta a punto](AGENTS.md
 Auditoría y corrección con TDD de 15 hallazgos (S-01…S-15): secretos fuera del código, tokens tipados con rotación y revocación, auditoría con identidad del JWT, aislamiento de tenant en usuarios/estructura/inbox, registro público cerrado por defecto, 2FA real, rate limit de login, soft delete, `extra='forbid'`, fin del "modo demo" en análisis y de la escalada de privilegios vía `usuarios:gestionar`. Migración `5b6c7d8e9f0a` (FKs legadas a `usuarios`). Suite: 786 tests verdes.
 **Governance**: CRÍTICO — aprobado explícitamente por el usuario.
 
-### [C-31] `ui-claro-profesional-violeta` ⏳ *(en curso)*
-Tailwind v4 + Motion + Embla + lucide + Recharts. Tokens light/dark, capa de compatibilidad para las páginas heredadas, shell nuevo (sidebar/topbar/session), Login con 2FA y Dashboard por rol con datos reales. Pendiente: migrar páginas heredadas a `components/ui`.
+### [C-31] `ui-petroleo-coral` ⏳ *(en curso)*
+Tailwind v4 + Motion + Embla + lucide + Recharts. Paleta petróleo + coral con tipografía display (Fraunces), sidebar oscuro, líneas de traza animadas y revelado escalonado. Tokens light/dark, capa de compatibilidad para las páginas heredadas, shell nuevo (sidebar/topbar/session), Login con 2FA y Dashboard por rol con datos reales. Pendiente: migrar páginas heredadas a `components/ui`.
 
 ### [C-32] `demo-lista` ⏳ *(pendiente)*
 Seed demo idempotente, usuario por rol (FINANZAS, NEXO), emails sin tildes, README con arranque y credenciales.

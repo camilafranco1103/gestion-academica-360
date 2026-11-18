@@ -1,6 +1,8 @@
 import { BookOpen, ClipboardList, GraduationCap, Receipt } from 'lucide-react';
-import { StatCard } from '@/components/ui/StatCard';
+import { Reveal } from '@/components/ui/Reveal';
+import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Skeleton } from '@/components/ui/Skeleton';
+import { StatCard } from '@/components/ui/StatCard';
 import { useSession } from '@/context/SessionContext';
 import { AvanceChart } from '@/features/dashboard/AvanceChart';
 import { AvisosCarousel } from '@/features/dashboard/AvisosCarousel';
@@ -42,26 +44,56 @@ export default function Dashboard() {
       {!data ? (
         <DashboardSkeleton />
       ) : (
-        <div className="space-y-6">
+        <div className="space-y-10">
           {kpis.length > 0 && (
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              {kpis.map((k) => <StatCard key={k.label} {...k} />)}
-            </div>
+            <section>
+              <SectionTitle>Resumen</SectionTitle>
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                {kpis.map((k, i) => (
+                  <Reveal key={k.label} delay={i * 0.07}>
+                    <StatCard {...k} />
+                  </Reveal>
+                ))}
+              </div>
+            </section>
           )}
-
-          <AvisosCarousel avisos={data.avisos} />
-
-          {(data.avance || data.comunicaciones) && (
-            <div className="grid gap-6 xl:grid-cols-3">
-              {data.avance && <div className="xl:col-span-2"><AvanceChart data={data.avance} /></div>}
-              {data.comunicaciones && <ComunicacionesMeters data={data.comunicaciones} />}
-            </div>
-          )}
-
-          {data.liquidado && <LiquidadoChart data={data.liquidado} />}
 
           <section>
-            <h2 className="mb-3 text-sm font-semibold text-muted-foreground">Accesos rápidos</h2>
+            <SectionTitle>Novedades</SectionTitle>
+            <Reveal>
+              <AvisosCarousel avisos={data.avisos} />
+            </Reveal>
+          </section>
+
+          {(data.avance || data.comunicaciones) && (
+            <section>
+              <SectionTitle>Actividad académica</SectionTitle>
+              <div className="grid gap-6 xl:grid-cols-3">
+                {data.avance && (
+                  <Reveal className="xl:col-span-2">
+                    <AvanceChart data={data.avance} />
+                  </Reveal>
+                )}
+                {data.comunicaciones && (
+                  <Reveal delay={0.1}>
+                    <ComunicacionesMeters data={data.comunicaciones} />
+                  </Reveal>
+                )}
+              </div>
+            </section>
+          )}
+
+          {data.liquidado && (
+            <section>
+              <SectionTitle>Finanzas</SectionTitle>
+              <Reveal>
+                <LiquidadoChart data={data.liquidado} />
+              </Reveal>
+            </section>
+          )}
+
+          <section>
+            <SectionTitle>Accesos rápidos</SectionTitle>
             <QuickActions />
           </section>
         </div>

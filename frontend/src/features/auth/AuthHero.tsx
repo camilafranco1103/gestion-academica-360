@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Activity, BellRing, ShieldCheck, TrendingUp, Users, Wallet } from 'lucide-react';
 import { Carousel } from '@/components/ui/Carousel';
+import { TraceLines } from '@/components/ui/TraceLines';
 import { Logo } from '@/components/layout/Logo';
 
 const features = [
@@ -27,25 +28,20 @@ const features = [
 ];
 
 const floating = [
-  { icon: Users, label: 'Roles y permisos', value: '7 perfiles', className: 'top-[18%] right-[8%]', delay: 0 },
+  { icon: Users, label: 'Roles y permisos', value: '7 perfiles', className: 'top-[16%] right-[8%]', delay: 0 },
   { icon: Activity, label: 'Integración', value: 'Moodle WS', className: 'bottom-[12%] right-[10%]', delay: 1.5 },
 ];
 
 export function AuthHero() {
   return (
-    <div className="relative hidden overflow-hidden lg:flex lg:flex-col lg:justify-between lg:p-12">
-      {/* animated gradient mesh */}
-      <div
-        aria-hidden
-        className="animate-gradient absolute inset-0 bg-[length:200%_200%]"
-        style={{
-          backgroundImage:
-            'linear-gradient(125deg, oklch(42% 0.22 277), oklch(48% 0.25 293), oklch(40% 0.2 265), oklch(50% 0.24 300))',
-        }}
-      />
+    <div className="relative hidden overflow-hidden text-white lg:flex lg:flex-col lg:justify-between lg:p-12">
+      {/* layered background: petrol gradient, coral aurora, grid, trace lines, grain */}
+      <div aria-hidden className="bg-hero animate-gradient absolute inset-0" />
       <div aria-hidden className="bg-grid absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
-      <div aria-hidden className="absolute -top-24 -left-24 size-96 rounded-full bg-white/10 blur-3xl" />
-      <div aria-hidden className="absolute -right-20 -bottom-32 size-[28rem] rounded-full bg-fuchsia-400/20 blur-3xl" />
+      <div aria-hidden className="animate-aurora absolute -top-24 -left-24 size-96 rounded-full bg-white/10 blur-3xl" />
+      <div aria-hidden className="animate-aurora absolute -right-24 -bottom-36 size-[26rem] rounded-full bg-accent/20 blur-[100px] [animation-delay:-8s]" />
+      <TraceLines fit="contain" className="inset-auto top-[34%] right-0 h-[34%] w-[46%]" />
+      <div aria-hidden className="bg-grain absolute inset-0 opacity-[0.12] mix-blend-overlay" />
 
       {floating.map(({ icon: Icon, label, value, className, delay }) => (
         <motion.div
@@ -54,7 +50,7 @@ export function AuthHero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1, y: [0, -12, 0] }}
           transition={{ opacity: { delay: 0.4 + delay / 3 }, y: { duration: 7, repeat: Infinity, delay } }}
-          className={`absolute ${className} flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-white shadow-2xl backdrop-blur-md`}
+          className={`absolute ${className} flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-4 py-3 shadow-2xl backdrop-blur-md`}
         >
           <span className="grid size-9 place-items-center rounded-xl bg-white/20">
             <Icon className="size-4.5" />
@@ -66,20 +62,28 @@ export function AuthHero() {
         </motion.div>
       ))}
 
-      <div className="relative text-white">
+      <div className="relative">
         <Logo size={40} />
       </div>
 
-      <div className="relative max-w-md text-white">
+      <div className="relative max-w-md">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-4 text-xs font-semibold tracking-[0.24em] text-accent uppercase"
+        >
+          Gestión Académica 360
+        </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl leading-tight font-bold text-white"
+          transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+          className="text-4xl leading-[1.08] text-white xl:text-5xl"
         >
-          La capa de inteligencia sobre tu campus virtual.
+          La capa de inteligencia sobre tu <em className="text-accent not-italic">campus virtual.</em>
         </motion.h1>
-        <p className="mt-4 text-white/75">
+        <p className="mt-5 text-white/75">
           Consolidá Moodle, coordiná equipos docentes y automatizá la gestión administrativa en un solo lugar.
         </p>
 
@@ -87,7 +91,7 @@ export function AuthHero() {
           <Carousel label="Funcionalidades" autoplayMs={4500}>
             {features.map(({ icon: Icon, title, text }) => (
               <div key={title} className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-md">
-                <Icon className="size-6 text-white" />
+                <Icon className="size-6 text-accent" />
                 <p className="mt-3 font-semibold">{title}</p>
                 <p className="mt-1 text-sm text-white/70">{text}</p>
               </div>

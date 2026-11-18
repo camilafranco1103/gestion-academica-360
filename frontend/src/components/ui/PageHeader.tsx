@@ -17,9 +17,9 @@ export function PageHeader({ title, description, eyebrow, actions }: PageHeaderP
       className="mb-6 flex flex-wrap items-end justify-between gap-4"
     >
       <div>
-        {eyebrow && <p className="mb-1 text-xs font-semibold tracking-wider text-primary uppercase">{eyebrow}</p>}
-        <h1 className="text-2xl font-bold sm:text-3xl">{title}</h1>
-        {description && <p className="mt-1 text-sm text-muted-foreground">{description}</p>}
+        {eyebrow && <p className="mb-2 text-xs font-semibold tracking-[0.2em] text-accent-ink uppercase">{eyebrow}</p>}
+        <h1 className="text-3xl sm:text-4xl">{title}</h1>
+        {description && <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{description}</p>}
       </div>
       {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
     </motion.div>

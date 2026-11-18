@@ -10,7 +10,7 @@ export function UserAvatar({ name, className }: { name: string; className?: stri
     <span
       aria-hidden
       className={cn(
-        'bg-brand grid size-9 shrink-0 place-items-center rounded-full text-xs font-bold text-white ring-2 ring-card',
+        'bg-brand grid size-9 shrink-0 place-items-center rounded-full text-xs font-bold text-white ring-2 ring-white/20',
         className,
       )}
     >

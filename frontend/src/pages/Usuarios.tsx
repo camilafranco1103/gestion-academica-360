@@ -90,7 +90,7 @@ export default function Usuarios() {
 
       {error && <div className="error-message">{error}</div>}
       {success && (
-        <div className="error-message" style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', color: '#166534' }}>
+        <div className="success-message">
           {success}
         </div>
       )}
@@ -355,7 +355,7 @@ function EditUserModal({ user, onClose, onSaved }: { user: Usuario; onClose: () 
                         alignItems: 'center',
                         gap: '0.3rem',
                         padding: '0.2rem 0.6rem',
-                        background: '#eef2ff',
+                        background: 'var(--color-primary-soft)',
                         color: 'var(--primary)',
                         borderRadius: '999px',
                         fontSize: '0.8rem',
@@ -370,7 +370,7 @@ function EditUserModal({ user, onClose, onSaved }: { user: Usuario; onClose: () 
                           background: 'none',
                           border: 'none',
                           cursor: 'pointer',
-                          color: '#94a3b8',
+                          color: 'var(--color-muted-foreground)',
                           fontSize: '0.85rem',
                           padding: 0,
                           lineHeight: 1,
